@@ -10,43 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170308220709) do
+ActiveRecord::Schema.define(version: 20170309204830) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "post_id"
-    t.string   "body"
-    t.datetime "datetime"
+    t.integer  "photo_id"
+    t.text     "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["photo_id"], name: "index_comments_on_photo_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "photos", force: :cascade do |t|
-    t.string   "title"
-    t.string   "content_type"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  create_table "post_tags", force: :cascade do |t|
-    t.integer  "post_id"
+  create_table "photo_tags", force: :cascade do |t|
+    t.integer  "photo_id"
     t.integer  "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "posts", force: :cascade do |t|
+  create_table "photos", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "content_type"
     t.string   "title"
-    t.string   "content"
-    t.boolean  "likes"
-    t.datetime "datetime"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["user_id"], name: "index_posts_on_user_id"
+    t.string   "content_type"
+    t.text     "body"
+    t.integer  "likes"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -58,11 +52,21 @@ ActiveRecord::Schema.define(version: 20170308220709) do
   create_table "users", force: :cascade do |t|
     t.string   "fname"
     t.string   "lname"
-    t.string   "email"
     t.string   "username"
-    t.string   "password"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end
