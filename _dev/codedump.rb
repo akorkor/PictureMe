@@ -1,3 +1,10 @@
+<p><%= photos. %></p>
+
+<% end %>
+<% end %>
+
+
+
 Post.destroy_all
 Post.create([
   { user_id:1, content_type:"image/jpeg", title:"First President", content:"I'm the first president of United States of America!", likes:2, image_file_name:nil, image_content_type:nil, image_file_size:nil, image_updated_at:nil },

@@ -1,11 +1,13 @@
-class PhotosController < ApplicationController
+class PhotoController < ApplicationController
   before_action :set_photo, only: [:show, :edit, :update, :destroy]
 
 
   def home
     puts "\n******* home *******"
+    @photos = Photo.order('created_at')
+
   end
-    
+
   # GET /photos
   def index
     @photos = Photo.order('created_at')
