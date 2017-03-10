@@ -6,8 +6,7 @@ class CreatePosts < ActiveRecord::Migration[5.0]
       t.string :content_type
       t.string :title
       t.string :content
-      t.boolean :likes
-      t.datetime :datetime
+      t.integer :likes
 
       t.timestamps
     end
