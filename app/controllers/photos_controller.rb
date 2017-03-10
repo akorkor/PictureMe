@@ -10,7 +10,10 @@ class PhotosController < ApplicationController
 
   # GET /photos
   def index
+    puts "\n******* profile *******"
+    puts "current_user: #{current_user.inspect}"
     @photos = Photo.order('created_at')
+    @user = current_user
   end
 
   # GET /photos/1

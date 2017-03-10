@@ -2,7 +2,21 @@
 
 <h1>Profile Page</h1>
 
-<table>
+<div id="profileMenu">
+  <!--======= profile menu =======-->
+  <div id="currentuserDisplay">
+    <%= @user.username %>
+  </div>
+
+  <div id="editprofileButton">
+    <button type="button">
+      <%= link_to "Edit Profile", edit_user_registration_path, :class => "allButtons" %>
+    </button>
+  </div>
+
+</div>
+
+<!-- <table>
   <thead>
     <tr>
       <th colspan="3"></th>
@@ -18,8 +32,4 @@
       </tr>
     <% end %>
   </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Photo', new_photo_path %>
+</table> -->
