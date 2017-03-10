@@ -4,8 +4,10 @@ class PhotosController < ApplicationController
 
   def home
     puts "\n******* home *******"
+    puts "current_user: #{current_user.inspect}"
+    @photos = Photo.all
   end
-    
+
   # GET /photos
   def index
     @photos = Photo.order('created_at')

@@ -34,3 +34,5 @@ Post.create([
     </div>
   </nav>
   </div>
+
+  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
