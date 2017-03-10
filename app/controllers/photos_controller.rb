@@ -4,7 +4,6 @@ class PhotoController < ApplicationController
 
   def home
     puts "\n******* home *******"
-    @photos = Photo.order('created_at')
 
   end
 

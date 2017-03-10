@@ -1,0 +1,24 @@
+  <div id="home_botton">
+    <a href="/home">
+      <button>Home</button>
+    </a>
+  </div>
+
+  <div id="upload_botton">
+    <button type="button">
+      <%= link_to "New Photo", new_photo_path %>
+    </button>
+  </div>
+
+  <div id="profile_botton">
+    <button type="button">
+      <%= link_to "My Page", photos_path %>
+    </button>
+  </div>
+
+
+  <div id="signout_botton">
+    <button type="button">
+      <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+    </button>
+  </div>
