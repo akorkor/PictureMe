@@ -21,7 +21,10 @@ class PhotosController < ApplicationController
 
   # GET /photos/new
   def new
-    @photo = Photo.new
+    puts "\n******* new *******"
+    @photo = Photo.new(user_id: current_user.id)
+    puts "@photo: #{@photo.inspect}"
+    @user = current_user
   end
 
   # GET /photos/1/edit
@@ -31,15 +34,16 @@ class PhotosController < ApplicationController
   # POST /photos
   # POST /photos.json
   def create
+    puts "\n******* create *******"
     @photo = Photo.new(photo_params)
+    puts "photo_params: #{photo_params.inspect}"
 
-    respond_to do |format|
       if @photo.save
         flash[:success] = "Your photo has been successfully added!"
+        @photo.update(user_id: current_user)
       else
         render :new
       end
-    end
   end
 
   # PATCH/PUT /photos/1
@@ -74,6 +78,6 @@ class PhotosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def photo_params
-      params.require(:photo).permit(:image, :title, :body, :likes)
+      params.require(:photo).permit(:user_id, :content_type, :title, :body, :likes, :image)
     end
 end

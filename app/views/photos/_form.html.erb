@@ -1,6 +1,9 @@
 <div class="page-header"><h1>Upload Photo</h1></div>
+
 <%= form_for @photo do |f| %>
   <%= render :partial => '/shared/errors', object: @photo %>
+
+
   <div class="form-group">
     <%= f.label :content_type %>
     <%= f.text_field :content_type, class: 'form-control' %>
@@ -15,6 +18,7 @@
     <%= f.label :image %>
     <%= f.file_field :image, class: 'form-control'%>
   </div>
+
 
   <%= f.submit 'Upload', class: 'btn btn-primary' %>
 <% end %>
