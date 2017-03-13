@@ -4,21 +4,23 @@
     </a>
   </div>
 
+
   <div id="upload_botton">
-    <button type="button">
-      <%= link_to "New Photo", new_photo_path %>
-    </button>
+    <a href="/photos/new">
+      <button>New Photo</button>
+    </a>
   </div>
 
+
   <div id="profile_botton">
-    <button type="button">
-      <%= link_to "My Page", photos_path %>
-    </button>
+    <a href="/photos">
+      <button>My Page</button>
+    </a>
   </div>
 
 
   <div id="signout_botton">
     <button type="button">
-      <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+      <%= link_to "Sign out", destroy_user_session_path, :class => "allButtons", :method => :delete %>
     </button>
   </div>
