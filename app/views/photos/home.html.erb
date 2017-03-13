@@ -1,12 +1,10 @@
 <!-- == section == -->
 <h1>Home</h1>
 
-<% @photos.each do |photo| %>
-  <%= link_to image_tag(@photo.image.url, class: 'media-object'), @photo.image.url, target: '_blank' %>
-  <%= photo.title %>
 
-<% end %>
 <div id="contentBx">
+  <% @photos.each do |photo| %>
+
         <p id="feed">Live Feed:</p>
         <div id="picCont">
 
@@ -15,12 +13,13 @@
             </div>
 
             <div id="picBx">
-
+              <%= link_to image_tag(photo.image.url), photo_path(current_user, photo) %>
             </div>
 
             <div id="picInfoBx">
 
               <div id="titleBx">
+                <%= photo.title %>
               </div>
 
               <div id="like">
@@ -31,4 +30,6 @@
             <div id="bodyBx">
             </div>
         </div>
+  <% end %>
+
 </div>

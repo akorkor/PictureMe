@@ -1,10 +1,12 @@
 <div class="page-header"><h1>Upload Photo</h1></div>
 
+<%= puts "@photo: #{@photo.inspect}" %>
+<%= puts "current_user: #{current_user.inspect}" %>
 <%= form_for @photo do |f| %>
   <%= render :partial => '/shared/errors', object: @photo %>
 
   <div class="form-group">
-    <%= f.hidden_field :user_id, :value => @user, class: 'form-control' %>
+    <%= f.hidden_field :user_id, class: 'form-control' %>
   </div>
 
 

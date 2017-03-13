@@ -2,7 +2,7 @@ class Photo < ApplicationRecord
   has_many :tags, through: :photo_tags
   has_many :photo_tags
   has_many :comments
-  belongs_to :users
+  belongs_to :user
 
   has_attached_file :image, :styles => lambda { |attachment| { :thumb =>
     (attachment.instance.title == 'Special' ? "100x100#" : "64x64#") } }
