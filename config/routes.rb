@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   root to: "photos#home"
   get "/" => "photos#home"
   get "/home" => "photos#home"
+  get "/explore" => "tags#explore"
 
-  
+
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :photos do
     resources :comments

@@ -28,7 +28,6 @@ class PhotosController < ApplicationController
     @photo = Photo.new(user_id: current_user.id)
     puts "@photo: #{@photo.inspect}"
 #    @user = current_user.photos.new(photo_params)
-    redirect_to :home
   end
 
   # GET /photos/1/edit
@@ -48,6 +47,7 @@ class PhotosController < ApplicationController
       else
         render :new
       end
+    redirect_to :home  
   end
 
   # PATCH/PUT /photos/1
