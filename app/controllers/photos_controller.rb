@@ -28,7 +28,6 @@ class PhotosController < ApplicationController
     @photo = Photo.new(user_id: current_user.id)
     puts "@photo: #{@photo.inspect}"
 #    @user = current_user.photos.new(photo_params)
-    redirect_to :home
   end
 
   # GET /photos/1/edit
@@ -45,6 +44,7 @@ class PhotosController < ApplicationController
       if @photo.save
         flash[:success] = "Your photo has been successfully added!"
         @photo.update(user_id: current_user)
+        redirect_to :home
       else
         render :new
       end
