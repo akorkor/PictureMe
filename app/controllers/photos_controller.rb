@@ -48,6 +48,7 @@ class PhotosController < ApplicationController
       else
         render :new
       end
+    redirect_to :home  
   end
 
   # PATCH/PUT /photos/1
