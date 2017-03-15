@@ -24,9 +24,14 @@
     </a>
   </div>
 
+  <%= form_tag("search", :method => 'get') do %>
+    <%= text_field_tag("search") %>
+    <%= button_tag "search" %>
+  <% end %>
+
   <div id="signout_botton">
     <button type="button">
       <%= link_to "Sign out", destroy_user_session_path, :class => "allButtons", :method => :delete %>
     </button>
   </div>
-  <% end %>
+<% end %>

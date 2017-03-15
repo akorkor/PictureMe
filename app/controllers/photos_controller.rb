@@ -14,7 +14,6 @@ class PhotosController < ApplicationController
     else
       @photos = Photo.all
     end
-    puts "@photos: #{@photos.inspect}"
   end
 
   # GET /photos
@@ -29,6 +28,18 @@ class PhotosController < ApplicationController
   # GET /photos/1
   # GET /photos/1.json
   def show
+  end
+
+  def search
+    puts "\n******* tags *******"
+    puts "\n params[:search]: #{params[:search]}"
+    if params[:search]
+      @photos = Photo.tagged_with(params[:search])
+      render "tags/index"
+    else
+      @photos = Photo.all
+    end
+
   end
 
   # GET /photos/new
