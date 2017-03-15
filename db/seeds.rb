@@ -1,9 +1,9 @@
 Tag.destroy_all
 Tag.create([
-  { tag_name:"vacation" },
-  { tag_name:"animal" },
-  { tag_name:"politics" },
-  { tag_name:"cute" }
+  { name:"vacation" },
+  { name:"animal" },
+  { name:"politics" },
+  { name:"cute" }
   ])
 
   # Comment.destroy_all

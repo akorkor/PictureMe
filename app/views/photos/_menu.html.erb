@@ -1,3 +1,5 @@
+<% if session[:user_id] %>
+
   <div id="home_botton">
     <a href="/home">
       <button>Home</button>
@@ -27,3 +29,4 @@
       <%= link_to "Sign out", destroy_user_session_path, :class => "allButtons", :method => :delete %>
     </button>
   </div>
+  <% end %>

@@ -27,6 +27,11 @@
 
             </div>
 
+            <div id="tagBx">
+              <!-- <p>Tags: <%= photo.tag_list %></p> -->
+              <p>Tags: <%= raw photo.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
+            </div>
+
             <div id="bodyBx">
               <%= photo.body %>
             </div>

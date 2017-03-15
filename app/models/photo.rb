@@ -1,8 +1,7 @@
 class Photo < ApplicationRecord
-  has_many :tags, through: :photo_tags
-  has_many :photo_tags
   has_many :comments
   belongs_to :user
+  acts_as_taggable
 
   has_attached_file :image,
     :styles => { :thumb => "64x64>", :original => "100x100>" },

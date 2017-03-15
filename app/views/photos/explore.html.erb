@@ -1,0 +1,6 @@
+<h1>Explore</h1>
+
+<% @tags.each do |tags| %>
+  <% puts "tags: #{tags}" %>
+  <%= link_to tags.tag_name %>
+<% end %>

@@ -6,7 +6,15 @@ class PhotosController < ApplicationController
     puts "\n******* home *******"
     @photos = Photo.order('created_at')
     puts "current_user: #{current_user.inspect}"
-
+    @user = current_user
+    session[:user_id] = @user.id
+    puts "session[:user_id]: #{session[:user_id].inspect}"
+    if params[:tag]
+      @photos = Photo.tagged_with(params[:tag])
+    else
+      @photos = Photo.all
+    end
+    puts "@photos: #{@photos.inspect}"
   end
 
   # GET /photos
@@ -15,6 +23,7 @@ class PhotosController < ApplicationController
     puts "current_user: #{current_user.inspect}"
     @photos = Photo.order('created_at')
     @user = current_user
+    session[:user_id] = @user.id
   end
 
   # GET /photos/1
@@ -39,7 +48,6 @@ class PhotosController < ApplicationController
   def create
     puts "\n******* create *******"
     @photo = Photo.new(photo_params)
-    puts "photo_params: #{photo_params.inspect}"
 
       if @photo.save
         flash[:success] = "Your photo has been successfully added!"
@@ -48,7 +56,6 @@ class PhotosController < ApplicationController
       else
         render :new
       end
-    redirect_to :home  
   end
 
   # PATCH/PUT /photos/1
@@ -83,6 +90,7 @@ class PhotosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def photo_params
-      params.require(:photo).permit(:user_id, :content_type, :title, :body, :likes, :image)
+      params.require(:photo).permit(:user_id, :content_type, :title, :body, :likes, :image, :tag_list)
     end
+
 end
