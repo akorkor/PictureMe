@@ -15,6 +15,39 @@
   </div>
 
 </div>
+<div id="contentBx">
+    <p id="feed">Live Feed:</p>
+    <div id="verticalBX">
+  <% @photos.each do |photo| %>
+
+        <div id="picCont">
+
+            <div id="userBx">
+
+            </div>
+
+            <div id="picBx">
+              <%= link_to image_tag(photo.image.url(:original), :class => "imgBxPic"), photo_path(photo) %>
+            </div>
+
+            <div id="picInfoBx">
+
+              <div id="titleBx">
+                <%= photo.title %>
+              </div>
+
+              <div id="like">
+              </div>
+
+            </div>
+
+            <div id="bodyBx">
+              <%= photo.body %>
+            </div>
+        </div>
+  <% end %>
+    </div>
+</div>
 
 <!-- <table>
   <thead>

@@ -3,9 +3,10 @@
 
 
 <div id="contentBx">
+    <p id="feed">Live Feed:</p>
+    <div id="verticalBX">
   <% @photos.each do |photo| %>
 
-        <p id="feed">Live Feed:</p>
         <div id="picCont">
 
             <div id="userBx">
@@ -13,7 +14,7 @@
             </div>
 
             <div id="picBx">
-              <%= link_to image_tag(photo.image.url(:original), :class => "imgBxPic"), photo_path(current_user, photo) %>
+              <%= link_to image_tag(photo.image.url(:original), :class => "imgBxPic"), photo_path(photo) %>
             </div>
 
             <div id="picInfoBx">
@@ -32,5 +33,5 @@
             </div>
         </div>
   <% end %>
-
+    </div>
 </div>

@@ -14,7 +14,11 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
-    @comment = Comment.new
+    puts "\n******* new *******"
+    puts "params: #{params.inspect}"
+    @photo = Photo.find(params[:photo_id])
+    @comment = Comment.new(user_id: current_user.id, photo_id: params[:photo_id])
+    puts "@comment: #{@comment.inspect}"
   end
 
   # GET /comments/1/edit
@@ -24,15 +28,16 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
+    puts "\n******* create *******"
+    puts "comment_params: #{comment_params.inspect}"
     @comment = Comment.new(comment_params)
+    puts "@comment: #{@comment.inspect}"
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @comment }
+        format.html { redirect_to photos_path, notice: 'Comment was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -69,6 +74,8 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.fetch(:comment, {})
+      puts "\n******* comment_params *******"
+      params.require(:comment).permit(:user_id, :photo_id, :body)
     end
+
 end

@@ -4,7 +4,7 @@ class PhotosController < ApplicationController
 
   def home
     puts "\n******* home *******"
-    @photos = Photo.order('created_at')
+    @photos = Photo.all
     puts "current_user: #{current_user.inspect}"
 
   end
@@ -13,13 +13,16 @@ class PhotosController < ApplicationController
   def index
     puts "\n******* profile *******"
     puts "current_user: #{current_user.inspect}"
-    @photos = Photo.order('created_at')
+#    @photos = Photo.order('created_at')
+    @photos = current_user.photos.order('created_at')
     @user = current_user
   end
 
   # GET /photos/1
   # GET /photos/1.json
   def show
+    @comments = Comment.where(photo_id: params[:id])
+    @user = current_user
   end
 
   # GET /photos/new
@@ -48,7 +51,6 @@ class PhotosController < ApplicationController
       else
         render :new
       end
-    redirect_to :home  
   end
 
   # PATCH/PUT /photos/1
