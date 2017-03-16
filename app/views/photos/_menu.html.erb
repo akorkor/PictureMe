@@ -1,6 +1,10 @@
 <% if session[:user_id] %>
 
-  <div id="home_botton">
+  <button type="button" class="btn btn-default btn-lg"><a href="/home">Home</a></button>
+  <button type="button" class="btn btn-default btn-lg"><a href="/photos/new">New Photo</a></button>
+  <button type="button" class="btn btn-default btn-lg"><a href="/photos">My Page</a></button>
+  <button type="button" class="btn btn-default btn-lg"><a href="/explore">Explore</a></button>
+  <!-- <div id="home_botton">
     <a href="/home">
       <button>Home</button>
     </a>
@@ -22,7 +26,7 @@
     <a href="/explore">
       <button>Explore</button>
     </a>
-  </div>
+  </div> -->
 
   <%= form_tag("search", :method => 'get') do %>
     <%= text_field_tag("search") %>
