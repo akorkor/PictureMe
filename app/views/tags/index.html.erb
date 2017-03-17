@@ -1,0 +1,37 @@
+<p>INDEX</p>
+
+<div id="contentBx">
+  <% @photos.each do |photo| %>
+
+        <div id="picCont">
+
+            <div id="userBx">
+
+            </div>
+
+            <div id="picBx">
+              <%= link_to image_tag(photo.image.url(:original), :class => "imgBxPic"), photo_path(current_user, photo) %>
+            </div>
+
+            <div id="picInfoBx">
+
+              <div id="titleBx">
+                <%= photo.title %>
+              </div>
+
+              <div id="like">
+              </div>
+
+            </div>
+
+            <div id="tagBx">
+              <p>Tags: <%= raw photo.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
+            </div>
+
+            <div id="bodyBx">
+              <%= photo.body %>
+            </div>
+        </div>
+  <% end %>
+
+</div>

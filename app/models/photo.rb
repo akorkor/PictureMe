@@ -3,7 +3,7 @@ class Photo < ApplicationRecord
   has_many :comments
   has_many :photo_users
 #  has_many :users, through: :photo_users
-
+  acts_as_taggable
 
   has_attached_file :image,
     :styles => { :thumb => "64x64>", :original => "200x200>" },
