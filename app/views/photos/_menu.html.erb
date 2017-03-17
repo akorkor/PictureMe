@@ -1,32 +1,32 @@
 <% if session[:user_id] %>
-
-  <button type="button" class="btn btn-default btn-lg"><a href="/home">Home</a></button>
-  <button type="button" class="btn btn-default btn-lg"><a href="/photos/new">New Photo</a></button>
-  <button type="button" class="btn btn-default btn-lg"><a href="/photos">My Page</a></button>
-  <button type="button" class="btn btn-default btn-lg"><a href="/explore">Explore</a></button>
-  <!-- <div id="home_botton">
-    <a href="/home">
-      <button>Home</button>
+  <div class="nav-buttons">
+    <a href="/home" class="btn btn-secondary btn-xl">
+      <span title="Home" class="glyphicon glyphicon-home">
+      </span>
     </a>
   </div>
 
-  <div id="upload_botton">
-    <a href="/photos/new">
-      <button>New Photo</button>
+  <div class="nav-buttons">
+    <a href="/photos/new" class="btn btn-secondary btn-xl">
+      <span title="New Photo" class="glyphicon glyphicon-camera">
+      </span>
     </a>
   </div>
 
-  <div id="profile_botton">
-    <a href="/photos">
-      <button>My Page</button>
+  <div class="nav-buttons">
+    <a href="/photos" class="btn btn-secondary btn-xl">
+      <span title="Profile" class="glyphicon glyphicon-sunglasses">
+      </span>
     </a>
   </div>
 
-  <div id="explore_botton">
-    <a href="/explore">
-      <button>Explore</button>
+  <div class="nav-buttons">
+    <a href="/explore" class="btn btn-secondary btn-xl">
+      <span title="Explore" class="glyphicon glyphicon-map-marker">
+      </span>
     </a>
-  </div> -->
+  </div>
+
 
   <%= form_tag("search", :method => 'get') do %>
     <%= text_field_tag("search") %>
@@ -35,7 +35,8 @@
 
   <div id="signout_botton">
     <button type="button">
-      <%= link_to "Sign out", destroy_user_session_path, :class => "allButtons", :method => :delete %>
+      <%= link_to "Sign out", destroy_user_session_path, :class => "glyphicon glyphicon-log-out", :method => :delete %>
     </button>
   </div>
+
 <% end %>

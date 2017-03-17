@@ -5,12 +5,13 @@
 }
 
 #menuBar {
-  border: 2px solid pink;
+  // border: 2px solid pink;
   height: 50px;
 }
 
-.allButtons {
-  text-decoration: none;
+
+body {
+    background-image: url("background.png");
 }
 
 button {
@@ -18,21 +19,24 @@ button {
 }
 
 /*======= ======= menuBar ====== =======*/
-#profile_botton {
+.btn {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  font-size: 24px;
+  line-height: 1.33;
+  border-radius: 35px;
   float: left;
+  color: #52527a;
 }
 
-#home_botton {
-  float: left;
+
+/*======= ======= login/signup ====== =======*/
+.field, .actions {
+  margin-left: 40%
 }
 
-#upload_botton {
-  float: left;
-}
 
-#signout_botton {
-  float: right;
-}
 /*======= ======= BODY ====== =======*/
 #contentBx{
   border: 1px solid;
