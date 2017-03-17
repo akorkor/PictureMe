@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get "/" => "photos#home"
   get "/home" => "photos#home"
   get "/explore" => "tags#explore"
-
+  get "/likes/" => "photos#likes"
 
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :photos do

@@ -7,7 +7,7 @@
         <div id="picCont1">
 
             <div id="userBx1">
-
+              <p id="userText"><%= @user.username %></p>
             </div>
 
             <div id="picBx1">
@@ -21,7 +21,9 @@
               </div>
 
               <div id="like1">
-                <%= @photo.likes %>
+                <a href="<%= @photo[:id] %>_<%= current_user.id %>" >Like</a>
+                <p id="likeNum1"></p>
+
               </div>
 
             </div>
@@ -44,3 +46,34 @@
         </div>
 
 </div>
+
+<script>
+
+$('#like1').on('click', function (event){
+  console.log("click");
+      event.preventDefault();
+      var userPhotoId = $('#like1').children('a').attr('href')
+      var n = userPhotoId.indexOf("_");
+      var photoId = userPhotoId.substring(0, n);
+      var userId = userPhotoId.substring(n+1, userPhotoId.length);
+
+      $.ajax({
+        url: "/likes",
+        type: "GET",
+        data: { user_id: userId, photo_id: photoId, like: true },
+      success: function (data) {
+        console.log("*** ajax success ***");
+        console.log("data", data);
+        console.log("data.likes", data.likes);
+        $('#likeNum1').text(data.likes)
+       },
+      error: function(xhr, ajaxOptions, thrownError){
+        console.log("*** ajax error ***");
+       },
+       timeout : 15000//timeout of the ajax call
+      });
+
+     return false; //for good measure
+});
+
+</script>

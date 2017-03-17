@@ -6,7 +6,7 @@ class PhotosController < ApplicationController
     puts "\n******* home *******"
     @photos = Photo.all
     puts "current_user: #{current_user.inspect}"
-
+    @user = current_user
   end
 
   # GET /photos
@@ -23,6 +23,31 @@ class PhotosController < ApplicationController
   def show
     @comments = Comment.where(photo_id: params[:id])
     @user = current_user
+
+  end
+
+  # GET likes
+  def likes
+    puts "\n******* likes *******"
+    puts "params: #{params.inspect}"
+    @p_u = PhotoUser.where(user_id: params[:user_id], photo_id: params[:photo_id])
+    puts "@p_u: #{@p_u.inspect}"
+    @photo = Photo.find(params[:photo_id])
+    puts "@photo: #{@photo.inspect}"
+    @likes = @photo.likes
+    if @p_u.length < 1
+      puts "\n** NO LIKES **"
+      @likes = @likes+1
+      puts "@likes: #{@likes.inspect}"
+      @photo.update(likes:@likes)
+      @p_u2 = PhotoUser.create(photo_id: params[:photo_id], user_id: params[:user_id])
+      puts "@p_u2: #{@p_u2.inspect}"
+    else
+      puts "\n** LIKES   !!!**"
+    end
+    puts "@photo: #{@photo.inspect}"
+    render :json => {"likes": @likes}
+
   end
 
   # GET /photos/new
