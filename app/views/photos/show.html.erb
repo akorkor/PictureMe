@@ -1,4 +1,79 @@
 <p id="notice"><%= notice %></p>
 
 <%= link_to 'Edit', edit_photo_path(@photo) %> |
-<%= link_to 'Back', photos_path %>
+
+<div id="contentBx1">
+
+        <div id="picCont1">
+
+            <div id="userBx1">
+              <p id="userText"><%= @user.username %></p>
+            </div>
+
+            <div id="picBx1">
+              <%= link_to image_tag(@photo.image.url(:original), :class => "imgBxPic1") %>
+            </div>
+
+            <div id="picInfoBx1">
+
+              <div id="titleBx1">
+                <%= @photo.title %>
+              </div>
+
+              <div id="like1">
+                <a href="<%= @photo[:id] %>_<%= current_user.id %>" >Like</a>
+                <p id="likeNum1"></p>
+
+              </div>
+
+            </div>
+
+            <div id="bodyBx1">
+              <%= @photo.body %>
+            </div>
+
+            <p id="addComment"><%= link_to "Add Comment", new_photo_comment_path(photo_id: @photo) %></p>
+
+        </div>
+        <div id="showComment">
+          <% @comments.each do |f| %>
+            <div id="post">
+              <%= @user.username %>
+              <%= f.body %>
+              <%= f.created_at %><br>
+            </div>
+          <% end %>
+        </div>
+
+</div>
+
+<script>
+
+$('#like1').on('click', function (event){
+  console.log("click");
+      event.preventDefault();
+      var userPhotoId = $('#like1').children('a').attr('href')
+      var n = userPhotoId.indexOf("_");
+      var photoId = userPhotoId.substring(0, n);
+      var userId = userPhotoId.substring(n+1, userPhotoId.length);
+
+      $.ajax({
+        url: "/likes",
+        type: "GET",
+        data: { user_id: userId, photo_id: photoId, like: true },
+      success: function (data) {
+        console.log("*** ajax success ***");
+        console.log("data", data);
+        console.log("data.likes", data.likes);
+        $('#likeNum1').text(data.likes)
+       },
+      error: function(xhr, ajaxOptions, thrownError){
+        console.log("*** ajax error ***");
+       },
+       timeout : 15000//timeout of the ajax call
+      });
+
+     return false; //for good measure
+});
+
+</script>

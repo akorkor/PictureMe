@@ -4,7 +4,7 @@ class PhotosController < ApplicationController
 
   def home
     puts "\n******* home *******"
-    @photos = Photo.order('created_at')
+    @photos = Photo.all
     puts "current_user: #{current_user.inspect}"
     @user = current_user
     session[:user_id] = @user.id
@@ -20,7 +20,8 @@ class PhotosController < ApplicationController
   def index
     puts "\n******* profile *******"
     puts "current_user: #{current_user.inspect}"
-    @photos = Photo.order('created_at')
+#    @photos = Photo.order('created_at')
+    @photos = current_user.photos.order('created_at')
     @user = current_user
     session[:user_id] = @user.id
   end
@@ -28,6 +29,33 @@ class PhotosController < ApplicationController
   # GET /photos/1
   # GET /photos/1.json
   def show
+    @comments = Comment.where(photo_id: params[:id])
+    @user = current_user
+
+  end
+
+  # GET likes
+  def likes
+    puts "\n******* likes *******"
+    puts "params: #{params.inspect}"
+    @p_u = PhotoUser.where(user_id: params[:user_id], photo_id: params[:photo_id])
+    puts "@p_u: #{@p_u.inspect}"
+    @photo = Photo.find(params[:photo_id])
+    puts "@photo: #{@photo.inspect}"
+    @likes = @photo.likes
+    if @p_u.length < 1
+      puts "\n** NO LIKES **"
+      @likes = @likes+1
+      puts "@likes: #{@likes.inspect}"
+      @photo.update(likes:@likes)
+      @p_u2 = PhotoUser.create(photo_id: params[:photo_id], user_id: params[:user_id])
+      puts "@p_u2: #{@p_u2.inspect}"
+    else
+      puts "\n** LIKES   !!!**"
+    end
+    puts "@photo: #{@photo.inspect}"
+    render :json => {"likes": @likes}
+
   end
 
   def search

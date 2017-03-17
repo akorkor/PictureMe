@@ -5,10 +5,9 @@
 <%= form_for @photo do |f| %>
   <%= render :partial => '/shared/errors', object: @photo %>
 
-  <div class="form-group">
-    <%= f.hidden_field :user_id, class: 'form-control' %>
-  </div>
+  <%= f.hidden_field :user_id, class: 'form-control' %>
 
+  <%= f.hidden_field :likes, {class: 'form-control', value: 0} %>
 
   <!-- <div class="form-group">
     <%= f.label :content_type %>

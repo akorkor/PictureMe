@@ -3,17 +3,18 @@
 
 
 <div id="contentBx">
+    <p id="feed">Live Feed:</p>
+    <div id="verticalBX">
   <% @photos.each do |photo| %>
 
-        <p id="feed">Live Feed:</p>
         <div id="picCont">
 
             <div id="userBx">
-
+              <p id="userText"><%= @user.username %></p>
             </div>
 
             <div id="picBx">
-              <%= link_to image_tag(photo.image.url(:original), :class => "imgBxPic"), photo_path(current_user, photo) %>
+              <%= link_to image_tag(photo.image.url(:original), :class => "imgBxPic"), photo_path(photo) %>
             </div>
 
             <div id="picInfoBx">
@@ -22,7 +23,7 @@
                 <%= photo.title %>
               </div>
 
-              <div id="like">
+              <div id="like">Like
               </div>
 
             </div>
@@ -36,5 +37,5 @@
             </div>
         </div>
   <% end %>
-
+    </div>
 </div>
