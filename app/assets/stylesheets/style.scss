@@ -31,7 +31,6 @@ button {
   color: #52527a;
 }
 
-
 /*======= ======= login/signup ====== =======*/
 .field, .actions {
   margin-left: 40%
@@ -51,12 +50,17 @@ button {
 }
 #verticalBX{
 height: auto;
+}
 
-
+/* #feedBx{
+  height: 100%;
+  width: 100%;
+  background: red;
 }
 #feed{
   float: left;
-}
+}*/
+
 #picCont{
   background: white;
 /*  border: 1px solid;*/
