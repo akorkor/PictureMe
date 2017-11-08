@@ -27,15 +27,15 @@
     </a>
   </div>
 
+  <%= link_to destroy_user_session_path, class: "btn btn-secondary btn-xl", :method => :delete do %>
+      <i title="Sign-out" class="glyphicon glyphicon-log-out"></i>
+  <% end %>
 
   <%= form_tag("search", :method => 'get') do %>
     <%= text_field_tag("search") %>
     <%= button_tag "search" %>
   <% end %>
 
-  <%= link_to destroy_user_session_path, class: "btn btn-secondary btn-xl", :method => :delete do %>
-      <i class="glyphicon glyphicon-log-out"></i>
-  <% end %>
 
   <!-- <div id="signout_botton">
     <button type="button">
