@@ -37,6 +37,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem "paperclip", "~> 4.2"
 gem 'acts-as-taggable-on'
+gem 'aws-sdk', '~> 2.8.7'
 # gem 'bootstrap-sass'
 
 group :development, :test do

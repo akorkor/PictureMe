@@ -19,3 +19,8 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ignore env info
+/config/secrets.yml
+/config/local_env.yml
+.env
